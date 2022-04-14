@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes> {/*In react-router-dom v6, "Switch" is replaced by routes "Routes". */}
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<Login />}>
           </Route>
         </Routes>
       </Router>
