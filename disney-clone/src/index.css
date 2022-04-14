@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
 html{
     scroll-behavior: smooth;
 }
@@ -9,7 +11,8 @@ html{
 body{
     background-color: #040714;
     color: #f9f9f9;
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
 }
