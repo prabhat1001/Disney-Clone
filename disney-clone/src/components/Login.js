@@ -32,7 +32,7 @@ const Content = styled.div`
     width:100%;
     position: relative;
     min-height: 100vh;
-    box-sizng: border-box;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
