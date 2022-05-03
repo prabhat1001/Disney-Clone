@@ -7,7 +7,7 @@
 </p>
 <br>
 
-<h4 >The House of Mouse streams way more than Mickey. It's a place where Jedi knights enchant viewers with their powers and where Marvel's antiheroes cause chaos and save lives. It's a classroom to learn about nature or the cosmos. It's a haven for Disney princesses who don't have to fit into any box. And it's the only place to stream the latest Pixar films like Onward. </h4>
+The House of Mouse streams way more than Mickey. It's a place where Jedi knights enchant viewers with their powers and where Marvel's antiheroes cause chaos and save lives. It's a classroom to learn about nature or the cosmos. It's a haven for Disney princesses who don't have to fit into any box. And it's the only place to stream the latest Pixar films like Onward.
 <br>
 <br>
 
