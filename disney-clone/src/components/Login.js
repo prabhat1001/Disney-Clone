@@ -59,7 +59,9 @@ const CTA = styled.div`
   max-width: 650px;
   width: 100%;
   display: flex;
+  position: relative;
   flex-direction: column;
+  align-items: center;
 `;
 
 const CTALogoOne = styled.img`
@@ -77,6 +79,7 @@ const SignUp = styled.a`
   margin-bottom: 12px;
   width: 100%;
   letter-spacing: 1.5px;
+  cursor: pointer;
   font-size: 18px;
   padding: 16.5px 0;
   border: 1px solid transparent;
