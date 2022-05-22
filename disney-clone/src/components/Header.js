@@ -1,38 +1,45 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { auth, provider, handleAuth} from "../firebase";
-import {selectUserName,selectUserPhoto, setUserLoginDetails} from "../features/user/userSlice"
+import {selectUserName,selectUserPhoto, setSignOutState, setUserLoginDetails} from "../features/user/userSlice"
 import { getAuth, GoogleAuthProvider,signInWithPopup } from 'firebase/auth';
+
 
 const Header = (props)=>{
 
     const dispatch = useDispatch();
-    const history = useNavigate();
+    // here (navigate => history)
+    const history = useNavigate(); 
     const userName = useSelector(selectUserName);
     const userPhoto = useSelector(selectUserPhoto);
   
-  //   useEffect(() => {
-  //     auth.onAuthStateChanged(async (user) => {
-  //       if (user) {
-  //         setUser(user);
-  //         history.push("/home");
-  //       }
-  //     });
-  //   }, [userName]
-  // );
+    // this function only runs when the variable userName is updated
+    useEffect(() => {
+      auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          setUser(user);
+          history("/home");
+        }
+      });
+    }, [userName]);
 
   const handleAuth = ()=>{
-    signInWithPopup(auth, provider)
-    .then((result)=>{
-      setUser(result.user);
-      // console.log(result);
-    })
-    .catch((error)=>{
-      alert(error.message);
-    })
- }
+    if(!userName){
+      signInWithPopup(auth,provider).then((result)=>{
+        setUser(result.user);
+      })
+      .catch((error)=>{
+        alert(error.message);
+      });
+    }else if(userName){
+      auth.signOut().then(()=>{
+        dispatch(setSignOutState())
+        history('/')
+      }).catch((err)=> alert(err.message));
+    }
+  }; 
 
 
   const setUser = (user) => {
@@ -91,7 +98,12 @@ const Header = (props)=>{
 
             </NavMenu>
 
-            <UserImg src={userPhoto} alt ={userName} />
+            <SignOut>
+                <UserImg src={userPhoto} alt ={userName} />
+                <DropDown>
+                    <span onClick={handleAuth}>Sign out</span>
+                </DropDown>
+            </SignOut>
 
           </>
       }
@@ -214,8 +226,7 @@ const Login = styled.div`
 
 
 const UserImg = styled.img`
-  height: 70%;
-  border-radius: 50%;
+  height: 100%;
 `;
 
 const DropDown = styled.div`
@@ -249,7 +260,7 @@ const SignOut = styled.div`
   &:hover {
     ${DropDown} {
       opacity: 1;
-      transition-duration: 1s;
+      transition-duration: 0.8s;
     }
   }
 `;
