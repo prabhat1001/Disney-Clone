@@ -1,33 +1,27 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectOriginal, } from '../features/movie/movieSlice';
 
 const Originals = (props) =>{
+
+  const movies= useSelector(selectOriginal);
     return(
-        <Container>
-            <h4>Originals</h4>
-            <Content>
-               <Wrap>
-                   <Link to={'/'}>
-                   <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/B983FF22BA64B6E19E0D3267280819B26758CFB765E8BED1099D11E320612953/scale?width=400&amp;aspectRatio=1.78&amp;format=jpeg" alt="A tail of two kitties"/>
-                   </Link>
-               </Wrap>
-               <Wrap>
-                   <Link to={'/'}>
-                   <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/A13BEC78ACF76FC91A94A1595A62A42CC26DFC6259332C74E061ADA379024E5C/badging?width=400&amp;aspectRatio=1.78&amp;format=jpeg&amp;label=originals" alt="Burrow"/>
-                   </Link>
-               </Wrap>
-               <Wrap>
-                   <Link to={'/'}>
-                   <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/CC08686E87BDB2D83A46C9608CB2F43018381A82608C380649351A00ED0D2919/badging?width=400&amp;aspectRatio=1.78&amp;format=jpeg&amp;label=originals" alt="Assembled"/>
-                   </Link>
-               </Wrap>
-               <Wrap>
-                   <Link to={'/'}>
-                   <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1E0501AFBAFCA1ABB5D31DBA7D1A913B2A35D70FD3DFD804939B71901577161D/scale?width=400&amp;aspectRatio=1.78&amp;format=jpeg" alt="Raya"/>
-                   </Link>
-               </Wrap>
-            </Content>
-        </Container>
+      <Container>
+      <h4>Originals</h4>
+      <Content>
+        {
+          movies && movies.map((movie,key) => (
+              <Wrap key={key}>
+                {movie.id}
+                <Link to={'/detail/' + movie.id}>
+                  <img src={movie.cardImg} alt={movie.title} />
+                </Link>
+              </Wrap>
+          ))
+        }
+      </Content>
+      </Container>
     );
 };
 
